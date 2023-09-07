@@ -2,19 +2,21 @@ import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { UsersModule } from './users/users.module';
 
 @Module({
   imports: [
     TypeOrmModule.forRoot({
       type: 'mysql',
-      host: '127.0.0.1',
+      host: 'localhost',
       port: 3306,
       username: 'root',
-      password: 'shiliangl123456..',
-      database: 'pipeline',
-      autoLoadEntities: true,
-      synchronize: true, // 数据库自动同步 entity 文件修改
+      password: '123456',
+      database: 'nestjs',
+      autoLoadEntities: true, // 使用这个配置自动导入entities
+      synchronize: true,
     }),
+    UsersModule,
   ],
   controllers: [AppController],
   providers: [AppService],
