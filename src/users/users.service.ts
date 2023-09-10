@@ -1,4 +1,4 @@
-import { Injectable } from "@nestjs/common";
+import { Injectable, HttpException } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { CreateUserDto } from "./dto/create-user.dto";
 import { UpdateUserDto } from "./dto/update-user.dto";
@@ -12,17 +12,17 @@ export class UsersService {
     private repository: Repository<UserEntity>,
   ) {}
 
-  async register(createUserDto: CreateUserDto) {
-    return await this.repository.findOne(createUserDto);
-  }
-
   async login(createUserDto: CreateUserDto) {
     return await this.repository.save(createUserDto);
   }
 
-  async create(createUserDto: CreateUserDto): Promise<UserEntity> {
-    // delete createUserDto.id;
-    return await this.repository.save(createUserDto);
+  async register(createUserDto: CreateUserDto) {
+    const { username } = createUserDto;
+    const user = await this.repository.findOne({
+      where: { username: username },
+    });
+    if (user) return new HttpException("User already registered", 500);
+    return this.repository.save(createUserDto);
   }
 
   async findAll(): Promise<UserEntity[]> {
