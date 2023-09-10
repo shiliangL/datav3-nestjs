@@ -9,3 +9,11 @@ nest g resource users
 nest g resource users --no-spec
 
 ```
+
+### 使用JWT
+
+掘金[https://juejin.cn/post/7275971781986156559?searchId=20230910092613E823571219BF4302D064]
+
+### 学习入门项目
+
+github[https://github.com/lujakob/nestjs-realworld-example-app]
