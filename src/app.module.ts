@@ -1,8 +1,9 @@
+// import { AppService } from "./app.service";
+// import { AppController } from "./app.controller";
 import { Module } from "@nestjs/common";
 import { TypeOrmModule } from "@nestjs/typeorm";
 import { UsersModule } from "./users/users.module";
-// import { AppService } from "./app.service";
-// import { AppController } from "./app.controller";
+import { ArticleModule } from "./article/article.module";
 
 @Module({
   imports: [
@@ -17,6 +18,7 @@ import { UsersModule } from "./users/users.module";
       synchronize: true,
     }),
     UsersModule,
+    ArticleModule,
   ],
   controllers: [
     // AppController

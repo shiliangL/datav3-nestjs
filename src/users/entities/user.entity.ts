@@ -1,35 +1,33 @@
-import {
-  Entity,
-  Column,
-  PrimaryGeneratedColumn,
-  UpdateDateColumn,
-  CreateDateColumn,
-} from "typeorm";
-
-@Entity()
+import { IsEmail } from "class-validator";
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { ArticleEntity } from "../../article/entities/article.entity";
+@Entity("user")
 export class UserEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column({
-    length: 50,
-    comment: "用户名",
-  })
+  @Column()
   username: string;
 
-  @Column({
-    length: 50,
-    comment: "密码",
-  })
+  @IsEmail()
+  @Column()
+  email: string;
+
+  @Column()
+  bio: string;
+
+  @Column()
   password: string;
 
-  @CreateDateColumn({
-    comment: "创建时间",
-  })
-  create_time: Date;
+  // @BeforeInsert()
+  // async hashPassword() {
+  //   this.password = await argon2.hash(this.password);
+  // }
 
-  @UpdateDateColumn({
-    comment: "更新时间",
-  })
-  update_time: Date;
+  // @ManyToMany((type) => ArticleEntity)
+  // @JoinTable()
+  // favorites: ArticleEntity[];
+
+  @OneToMany(() => ArticleEntity, (article) => article.author)
+  articles: ArticleEntity[];
 }
