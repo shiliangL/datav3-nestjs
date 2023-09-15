@@ -38,7 +38,10 @@ bootstrap();
 
 ### 使用swagger 装饰器优化标记接口
 
-使用ApiTags 添加接口分组
+- 使用ApiTags 添加接口分组；控制台添加
+- ApiOperation 接口描述; 具体接口添加  @ApiOperation({summary:"对具体API的描述",description:"描述细项"})
+- ApiParam 动态参数描述； 具体接口添加  @ApiParam({name:"id",description:"用户id",required:true})
+- 
 
 ```js
 import {

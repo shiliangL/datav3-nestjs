@@ -1,35 +1,45 @@
 import {
   Entity,
   Column,
+  JoinTable,
+  ManyToMany,
+  OneToMany,
   PrimaryGeneratedColumn,
-  UpdateDateColumn,
-  CreateDateColumn,
 } from "typeorm";
+import { IsEmail } from "class-validator";
+import { ArticleEntity } from "../../article/entities/article.entity";
 
-@Entity()
+@Entity("user")
 export class UserEntity {
-  @PrimaryGeneratedColumn()
+  @PrimaryGeneratedColumn("uuid")
   id: number;
 
-  @Column({
-    length: 50,
-    comment: "用户名",
-  })
+  @Column()
   username: string;
 
-  @Column({
-    length: 50,
-    comment: "密码",
-  })
+  @Column()
+  @IsEmail()
+  email: string;
+
+  @Column({ default: "" })
+  bio: string;
+
+  @Column({ default: "" })
+  image: string;
+
+  @Column()
   password: string;
 
-  @CreateDateColumn({
-    comment: "创建时间",
-  })
-  create_time: Date;
+  // @BeforeInsert()
+  // async hashPassword() {
+  //   this.password = await argon2.hash(this.password);
+  // }
 
-  @UpdateDateColumn({
-    comment: "更新时间",
-  })
-  update_time: Date;
+  @ManyToMany(() => ArticleEntity)
+  @JoinTable()
+  favorites: ArticleEntity[];
+
+  // 一个用户的文章是多个的，一对多
+  @OneToMany(() => ArticleEntity, (article) => article.author)
+  articles: ArticleEntity[];
 }
