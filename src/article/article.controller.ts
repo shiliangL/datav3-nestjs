@@ -12,14 +12,19 @@ import { CreateArticleDto } from "./dto/create-article.dto";
 import { UpdateArticleDto } from "./dto/update-article.dto";
 import { ApiTags } from "@nestjs/swagger";
 
+import { Users } from "../users/users.decorator";
+
 @Controller("article")
 @ApiTags("文章管理")
 export class ArticleController {
   constructor(private readonly articleService: ArticleService) {}
 
   @Post()
-  create(@Body() createArticleDto: CreateArticleDto) {
-    return this.articleService.create(createArticleDto);
+  create(
+    @Users("id") userId: number,
+    @Body() createArticleDto: CreateArticleDto,
+  ) {
+    return this.articleService.create(userId, createArticleDto);
   }
 
   @Get()
