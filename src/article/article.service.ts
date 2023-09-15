@@ -18,6 +18,7 @@ export class ArticleService {
   ) {}
   async create(userId: number, createArticleDto: CreateArticleDto) {
     const article = new ArticleEntity();
+    article.slug = "";
     article.title = createArticleDto.title;
     article.description = createArticleDto.description;
     article.tagList = createArticleDto.tagList || [];
@@ -36,19 +37,19 @@ export class ArticleService {
     return newArticle;
   }
 
-  findAll() {
-    return `This action returns all article`;
+  async findAll() {
+    return "articles";
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} article`;
+  async findOne(id: number) {
+    return await this.articleRepository.find({ where: { id } });
   }
 
-  update(id: number, updateArticleDto: UpdateArticleDto) {
-    return `This action updates a #${id} article`;
+  async update(id: number, updateArticleDto: UpdateArticleDto) {
+    return await this.articleRepository.update(id, updateArticleDto);
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} article`;
+  async remove(id: number) {
+    return await this.articleRepository.delete(id);
   }
 }
