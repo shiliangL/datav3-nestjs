@@ -2,16 +2,15 @@ import {
   Entity,
   Column,
   ManyToOne,
-  // OneToMany,
-  // JoinColumn,
+  OneToMany,
+  JoinColumn,
   BeforeUpdate,
   PrimaryGeneratedColumn,
 } from "typeorm";
-
-// import { Comment } from "../comment.entity";
+import { CommentEntity } from "./comment.entity";
 import { UserEntity } from "../../users/entities/user.entity";
 
-@Entity("article")
+@Entity()
 export class ArticleEntity {
   @PrimaryGeneratedColumn()
   id: number;
@@ -45,9 +44,11 @@ export class ArticleEntity {
   @ManyToOne(() => UserEntity, (user) => user.articles)
   author: UserEntity;
 
-  // @OneToMany(() => Comment, (comment) => comment.article, { eager: true })
-  // @JoinColumn()
-  // comments: Comment[];
+  @OneToMany(() => CommentEntity, (CommentEntity) => CommentEntity.article, {
+    eager: true,
+  })
+  @JoinColumn()
+  comments: CommentEntity[];
 
   @Column({ default: 0 })
   favoriteCount: number;

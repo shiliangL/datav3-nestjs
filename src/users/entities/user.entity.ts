@@ -1,20 +1,29 @@
-import { IsEmail } from "class-validator";
-import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import {
+  Entity,
+  Column,
+  JoinTable,
+  ManyToMany,
+  OneToMany,
+  PrimaryGeneratedColumn,
+} from "typeorm";
 import { ArticleEntity } from "../../article/entities/article.entity";
+
 @Entity("user")
 export class UserEntity {
-  @PrimaryGeneratedColumn()
+  @PrimaryGeneratedColumn("uuid")
   id: number;
 
   @Column()
   username: string;
 
-  @IsEmail()
   @Column()
   email: string;
 
-  @Column()
+  @Column({ default: "" })
   bio: string;
+
+  @Column({ default: "" })
+  image: string;
 
   @Column()
   password: string;
@@ -24,10 +33,11 @@ export class UserEntity {
   //   this.password = await argon2.hash(this.password);
   // }
 
-  // @ManyToMany((type) => ArticleEntity)
-  // @JoinTable()
-  // favorites: ArticleEntity[];
+  @ManyToMany(() => ArticleEntity)
+  @JoinTable()
+  favorites: ArticleEntity[];
 
+  // 一个用户的文章是多个的，一对多
   @OneToMany(() => ArticleEntity, (article) => article.author)
   articles: ArticleEntity[];
 }

@@ -18,8 +18,4 @@ nest g resource users --no-spec
 
 github[https://github.com/lujakob/nestjs-realworld-example-app]
 
-article
-
-问题备注
-
-### swagger 接口如何分类
+数据库表关系学习[https://juejin.cn/post/7142704416695517214?searchId=20230915092012CB7E584202ECB19C740F]
