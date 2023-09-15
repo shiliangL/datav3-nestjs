@@ -6,7 +6,6 @@ import {
   OneToMany,
   PrimaryGeneratedColumn,
 } from "typeorm";
-import { IsEmail } from "class-validator";
 import { ArticleEntity } from "../../article/entities/article.entity";
 
 @Entity("user")
@@ -18,7 +17,6 @@ export class UserEntity {
   username: string;
 
   @Column()
-  @IsEmail()
   email: string;
 
   @Column({ default: "" })
