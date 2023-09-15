@@ -1,18 +1,18 @@
 import {
   Entity,
-  PrimaryGeneratedColumn,
   Column,
   ManyToOne,
   OneToMany,
   JoinColumn,
   BeforeUpdate,
+  PrimaryGeneratedColumn,
 } from "typeorm";
 import { CommentEntity } from "./comment.entity";
 import { UserEntity } from "../../users/entities/user.entity";
 
 @Entity()
 export class ArticleEntity {
-  @PrimaryGeneratedColumn()
+  @PrimaryGeneratedColumn("uuid")
   id: number;
 
   @Column()

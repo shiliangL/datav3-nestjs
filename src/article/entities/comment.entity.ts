@@ -3,7 +3,7 @@ import { ArticleEntity } from "./article.entity";
 
 @Entity()
 export class CommentEntity {
-  @PrimaryGeneratedColumn()
+  @PrimaryGeneratedColumn("uuid")
   id: number;
 
   @Column()
