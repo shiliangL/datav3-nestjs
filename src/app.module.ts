@@ -3,7 +3,6 @@
 import { Module } from "@nestjs/common";
 import { TypeOrmModule } from "@nestjs/typeorm";
 import { UserModule } from "./user/user.module";
-import { ArticleModule } from "./article/article.module";
 
 @Module({
   imports: [
@@ -15,13 +14,12 @@ import { ArticleModule } from "./article/article.module";
       // password: "123456",
       // database: "nestjs",
       password: "shiliangl123456..",
-      database: "pipeline",
+      database: "nestjs",
       // entities: [__dirname + "/**/*.entity{.ts,.js}"],
       autoLoadEntities: true, // 使用这个配置自动导入entities
       synchronize: true,
     }),
     UserModule,
-    ArticleModule,
   ],
   controllers: [
     // AppController

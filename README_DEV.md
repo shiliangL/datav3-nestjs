@@ -1,3 +1,9 @@
+### 开始之前
+
+- 初始化项目nest new nest-pm
+- 按照数据库链接依赖 pnpm install --save @nestjs/typeorm typeorm mysql2
+- DTO参数校验
+
 ### swagger 使用接口文档
 
 #### 安装依赖
