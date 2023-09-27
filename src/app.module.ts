@@ -1,5 +1,3 @@
-// import { AppService } from "./app.service";
-// import { AppController } from "./app.controller";
 import { Module } from "@nestjs/common";
 import { TypeOrmModule } from "@nestjs/typeorm";
 import { UserModule } from "./user/user.module";
@@ -15,9 +13,9 @@ import { UserModule } from "./user/user.module";
       // database: "nestjs",
       password: "shiliangl123456..",
       database: "nestjs",
-      // entities: [__dirname + "/**/*.entity{.ts,.js}"],
-      autoLoadEntities: true, // 使用这个配置自动导入entities
-      synchronize: true,
+      // entities: [__dirname + '/**/*.entity{.ts,.js}'],
+      autoLoadEntities: true, // 自动链接被 forFeature 注册的实体
+      synchronize: true, // 实体与表同步 调试模式下开始。不然会有强替换导致数据丢是
     }),
     UserModule,
   ],

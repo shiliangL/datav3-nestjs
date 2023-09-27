@@ -1,8 +1,8 @@
 import bcrypt from "bcryptjs";
 import { Exclude } from "class-transformer";
-import { BeforeInsert, Column, PrimaryGeneratedColumn } from "typeorm";
+import { Column, BeforeInsert, PrimaryGeneratedColumn } from "typeorm";
 
-export class UserEntity {
+export class User {
   @PrimaryGeneratedColumn("uuid")
   id: string;
 

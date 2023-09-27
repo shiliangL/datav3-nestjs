@@ -9,7 +9,7 @@
 #### 安装依赖
 
 ```js
-npm install @nestjs / swagger swagger - ui - express - D
+npm install @nestjs/swagger swagger - ui - express - D
 ```
 
 #### 项目入口main.ts配置使用
