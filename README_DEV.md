@@ -61,6 +61,8 @@ export class UsersController {
 
 ### 用户登录注册，JWT认证权限
 
+[参考文档地址](https://juejin.cn/post/7044708915438682148)
+
 - 密码加密方案
 
 ```Typescript
